@@ -33,7 +33,6 @@ def processbitcounts():
         else:
             gamma += '0'
             epsilon += '1'
-        
     return(gamma, epsilon)
 
 def main():
