@@ -12,7 +12,6 @@ def shapescore(ashape):
 
 # score a round
 # 0 for a loss, 3 for a draw, 6 if won
-#
 def roundscore(opmove, mymove):
     rv = 0
     if(ord(opmove) == ord(mymove)-23):   # draw
@@ -40,10 +39,45 @@ def process_a():
             mm = li[2]
             score += score_a(om, mm)
             # print(om, mm, score_a(om, mm))
-        print("Total score: ", score)
+        print("Round 1 total score: ", score)
     return
 
+def computemymove(om, outc):
+    """
+        X: lose;
+        Y: draw;
+        Z: win;
+    """
+    rv = ''
+    if(outc == 'X'): # need to lose
+        if(om == 'A'):
+            rv = 'Z'
+        elif(om == 'B'):
+            rv = 'X'
+        else:
+            rv = 'Y'
+    elif(outc == 'Y'): # need to draw
+        return(chr(ord(om)+23))
+    else: #need to win
+        if(om == 'A'):
+            rv = 'Y'
+        elif(om == 'B'):
+            rv = 'Z'
+        else:
+            rv = 'X'
+    return(rv)
+
 def process_b():
+    score = 0
+    with open('input.txt') as infile:
+        for li in infile:
+            li = li.strip()
+            om = li[0]
+            outk = li[2]
+            # compute my move
+            mm = computemymove(om, outk)
+            score += score_a(om, mm)
+        print("Round 2 total score", score)
     return
 
 def process():
