@@ -45,7 +45,26 @@ def process_a():
     print("Priority sum = ", prioritysum)
     return
 
+def groupscan(pl1, pl2, pl3):
+    rv = ''
+    for chidx in ALLCHRS:
+        l1 = chidx in pl1
+        if ((chidx in pl1) and (chidx in pl2) and (chidx in pl3)):
+            rv = chidx
+            break
+    return(rv)
+
 def process_b():
+    prioritysum = 0
+    n = 0
+    with open('input.txt') as infile:
+        while n <= 100:
+            li1 = (infile.readline()).strip()
+            li2 = (infile.readline()).strip()
+            li3 = (infile.readline()).strip()
+            prioritysum += calc_priority(groupscan(li1,li2,li3))
+            n += 1
+    print("Result: ", prioritysum)
     return
 
 def process():
