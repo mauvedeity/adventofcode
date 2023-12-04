@@ -36,10 +36,11 @@ def process_b(pdatafile):
     rv = 0
     gameno = 0
     powers = 0
-    with open(pfiledata) as infile:
+    with open(pdatafile) as infile:
         for li in infile:
-                gameno = getgameno(li)
-                red, green, blue = 1,1,1
+            gameno = getgameno(li)
+            red, green, blue = 1,1,1
+            for agame in li.split(":")[1].split(";"):
                 for l3 in agame.split(','):
                     kount = int((l3.strip().split(' ')[0]))
                     color = ((l3.strip().split(' ')[1]))
@@ -55,7 +56,7 @@ def process_b(pdatafile):
 
 def process():
     print("Part A: ", process_a('input.txt'));
-    print("Part B: ", process_b('input05.txt'));
+    print("Part B: ", process_b('input.txt'));
 
 if __name__ == "__main__":
     process()
