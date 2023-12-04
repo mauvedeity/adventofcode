@@ -35,13 +35,23 @@ def process_a(pdatafile):
 def process_b(pdatafile):
     rv = 0
     gameno = 0
-    rtot, gtot, btot = 0,0,0
+    powers = 0
     with open(pfiledata) as infile:
         for li in infile:
                 gameno = getgameno(li)
-                
-
-    return
+                red, green, blue = 1,1,1
+                for l3 in agame.split(','):
+                    kount = int((l3.strip().split(' ')[0]))
+                    color = ((l3.strip().split(' ')[1]))
+                    if(color == 'red'):
+                        red = max(kount, red)
+                    elif(color == 'green'):
+                        green = max(kount, green)
+                    else:
+                        blue = max(blue, kount)
+            thisgame = (red * green * blue)
+            powers += thisgame
+    return(powers)
 
 def process():
     print("Part A: ", process_a('input.txt'));
