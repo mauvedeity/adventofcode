@@ -1,6 +1,9 @@
 # Personal
+**/input*.txt
 .vscode/
 **/.DS_Store
+**/output*.txt
+**/*tmp*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -131,7 +134,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# input TXT files
-input*.txt
 
