@@ -21,14 +21,24 @@ def part1(dfile):
 
 # Part 2
 def part2(dfile):
-    start = 50
+    posn = 50
     combo = 0
     with open(dfile, 'rt') as inf:
         for i in inf:
             if(len(i) > 1):
                 dir = i[0]
                 stp = int(i[1:])
-            
+                if(dir == 'L'):
+                    for p in range(stp):
+                        posn = (posn - 1) % 100
+                        if(posn == 0):
+                            combo += 1
+                else:
+                    for p in range(stp):
+                        posn = (posn + 1) % 100
+                        if(posn == 0):
+                            combo += 1
     return(combo)
 
 print('Combo:', part1('input-a.txt'))
+print('Combo:', part2('input-a.txt'))
