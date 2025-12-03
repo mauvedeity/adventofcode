@@ -27,6 +27,32 @@ def reparserange(rangestr):
     hi = l[1]
     return(validaterange(lo, hi))
 
+def validate2(intid):
+    valid = True
+    strid = str(intid)
+    slen = len(strid)
+    hslen = int(slen/2)
+    for seg in range(1, hslen+1):
+        for lens in range(1, 5):
+            tstr = seg*lens
+            if(tstr == strid):
+                valid = False
+    return(valid)
+
+def validater2(start, finish):
+    sum_invalid = 0
+    intstart = int(start)
+    intfinish = int(finish)
+    for id in range(intstart, intfinish):
+        if not validate2(id):
+            sum_invalid += id
+    return(sum_invalid)
+
+def reparse2(rangestr):
+    l = rangestr.split('-')
+    lo, hi = l[0], l[1]
+    return(validater2(lo, hi))
+
 def process_a(inputfile):
     result = 0
     with open(inputfile, 'rt') as inf:
@@ -37,7 +63,13 @@ def process_a(inputfile):
     return(result)
 
 def process_b(inputfile):
-    return(0)
+    result = 0
+    with open(inputfile, 'rt') as inf:
+        data = inf.readline()
+        dlist = data.split(',')
+        for d in dlist:
+            result += reparse2(d)
+    return(result)
 
 def process():
     print(process_a('input.txt'))
