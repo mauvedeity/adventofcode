@@ -1,11 +1,7 @@
 #!env python3
 
-def validateid(id):
-    return(0)
-
 def process_a(inputfile):
     return(0)
-
 
 def process_b(inputfile):
     return(0)
