@@ -1,5 +1,7 @@
 #!env python3
 import copy
+import string
+from itertools import combinations;
 
 def combine(a, b):
     ia = int(a)
@@ -24,25 +26,28 @@ def process_a(inputfile):
     return(result)
 
 def processlineb(line):
-    ltmp = str.strip(copy.copy(line))
-    target = 1
-    while(len(ltmp)>12):
-        if (ltmp.find(str(target)) == -1):
-            target += 1
-        ltmp = ltmp.replace(str(target),'',1)
-    print(ltmp, len(ltmp))
-    return(int(ltmp))
+    expline = list(line.strip())
+    result = 0
+    combos = list(combinations(expline,12))
+    for combo in combos:
+        cv = ''
+        for i in combo:
+            cv += i
+        if(int(cv) > result):
+            result = int(cv)
+    return(result)
 
 def process_b(inputfile):
     result = 0
     with open(inputfile, 'rt') as lines:
         for line in lines:
             result += processlineb(line)
+            print('.', end='')
     return(result)
 
 def process():
     print(process_a('input.txt'))
-    print(process_b('input-test.txt'))
+    print(process_b('input.txt'))
 
 if __name__ == "__main__":
     process()
