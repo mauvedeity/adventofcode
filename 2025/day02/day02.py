@@ -33,16 +33,17 @@ def validate2(intid):
     slen = len(strid)
     hslen = int(slen/2)
     for seg in range(1, hslen+1):
-        for lens in range(1, 5):
-            tstr = seg*lens
+        sseg = strid[0:seg]
+        for lens in range(1, 10):
+            tstr = sseg*lens
             if(tstr == strid):
-                valid = False
+                return(False)
     return(valid)
 
 def validater2(start, finish):
     sum_invalid = 0
     intstart = int(start)
-    intfinish = int(finish)
+    intfinish = int(finish) + 1
     for id in range(intstart, intfinish):
         if not validate2(id):
             sum_invalid += id
@@ -68,12 +69,13 @@ def process_b(inputfile):
         data = inf.readline()
         dlist = data.split(',')
         for d in dlist:
+            print (d)
             result += reparse2(d)
     return(result)
 
 def process():
     print(process_a('input.txt'))
-    print(process_b('input-test.txt'))
+    print(process_b('input.txt'))
 
 if __name__ == "__main__":
     process()
